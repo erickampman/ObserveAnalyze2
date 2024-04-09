@@ -61,11 +61,11 @@ struct ContentView: View {
 	}
 	
 	func bookFromID(_ id: Book2.ID?) throws -> Book2 {
-		if id == nil { throw OAError.noSelection}
+		if id == nil { throw OAError2.noSelection}
 		let book = library.books.first { book in
 			book.id == id
 		}
-		if book == nil { throw OAError.notFound}
+		if book == nil { throw OAError2.notFound}
 		return book!
 	}
 	

@@ -7,7 +7,7 @@
 
 import Foundation
 
-enum OAError: Error {
+enum OAError2: Error {
 	case noError
 	case notFound
 	case noSelection
