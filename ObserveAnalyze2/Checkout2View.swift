@@ -13,27 +13,26 @@ struct Checkout2View: View {
 	@Binding var showing: Bool
 	@State private var selectedPatron: Patron2.ID?
 	
-	init(book: Book2, showing: Binding<Bool>, selectedPatron: Patron2.ID? = nil) {
+	init(book: Book2, showing: Binding<Bool>) {
 		self.book = book
 		_showing = showing
-		self.selectedPatron = selectedPatron
+		self._selectedPatron = State(initialValue: book.patronID)
 	}
 
     var body: some View {
 		VStack {
 			Picker("Patron", selection: $selectedPatron) {
-				Text("Pick a Patron").tag(nil as String?)
+				Text("Not Checked out").tag(nil as String?)
 				ForEach(library.patrons) { patron in
-					Text("\(patron.name)")
-						.tag(patron.name as String?)
+					Text("\(patron.id)")
+						.tag(patron.id as String?)
 				}
 			}
 			HStack {
 				Button("Save") {
-					book.setPatron(selectedPatron!)
+					book.setPatron(selectedPatron)
 					showing = false
 				}
-				.disabled(selectedPatron == nil)
 				Button("Cancel") {
 					showing = false
 				}
@@ -41,7 +40,6 @@ struct Checkout2View: View {
 		}
 		.padding()
     }
-
 }
 
 #Preview {

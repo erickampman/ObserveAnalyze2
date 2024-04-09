@@ -28,7 +28,7 @@ class Book2: Identifiable, Equatable {
 		self.title = title
 	}
 	
-	func setPatron(_ patronID: Patron2.ID) {
+	func setPatron(_ patronID: Patron2.ID?) {
 		// FIXME what about already checked out?
 		self.patronID = patronID
 	}
