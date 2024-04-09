@@ -20,6 +20,9 @@
 		E46BC88F2BC470280032611A /* AddBook2View.swift in Sources */ = {isa = PBXBuildFile; fileRef = E46BC88E2BC470280032611A /* AddBook2View.swift */; };
 		E46BC8932BC474B20032611A /* EditBook2View.swift in Sources */ = {isa = PBXBuildFile; fileRef = E46BC8922BC474B20032611A /* EditBook2View.swift */; };
 		E46BC8952BC479640032611A /* OAError.swift in Sources */ = {isa = PBXBuildFile; fileRef = E46BC8942BC479640032611A /* OAError.swift */; };
+		E46BC89B2BC480BA0032611A /* Patron2.swift in Sources */ = {isa = PBXBuildFile; fileRef = E46BC89A2BC480BA0032611A /* Patron2.swift */; };
+		E46BC89D2BC482A50032611A /* AddPatron2View.swift in Sources */ = {isa = PBXBuildFile; fileRef = E46BC89C2BC482A50032611A /* AddPatron2View.swift */; };
+		E46BC89F2BC577760032611A /* Checkout2View.swift in Sources */ = {isa = PBXBuildFile; fileRef = E46BC89E2BC577760032611A /* Checkout2View.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -57,6 +60,9 @@
 		E46BC88E2BC470280032611A /* AddBook2View.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddBook2View.swift; sourceTree = "<group>"; };
 		E46BC8922BC474B20032611A /* EditBook2View.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EditBook2View.swift; sourceTree = "<group>"; };
 		E46BC8942BC479640032611A /* OAError.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OAError.swift; sourceTree = "<group>"; };
+		E46BC89A2BC480BA0032611A /* Patron2.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Patron2.swift; sourceTree = "<group>"; };
+		E46BC89C2BC482A50032611A /* AddPatron2View.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddPatron2View.swift; sourceTree = "<group>"; };
+		E46BC89E2BC577760032611A /* Checkout2View.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Checkout2View.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -113,6 +119,8 @@
 				E46BC8702BC43AEB0032611A /* Book2View.swift */,
 				E46BC88E2BC470280032611A /* AddBook2View.swift */,
 				E46BC8922BC474B20032611A /* EditBook2View.swift */,
+				E46BC89C2BC482A50032611A /* AddPatron2View.swift */,
+				E46BC89E2BC577760032611A /* Checkout2View.swift */,
 				E46BC8942BC479640032611A /* OAError.swift */,
 				E46BC8442BC436D60032611A /* Assets.xcassets */,
 				E46BC8462BC436D60032611A /* ObserveAnalyze2.entitlements */,
@@ -151,6 +159,7 @@
 			children = (
 				E46BC86C2BC437060032611A /* Book2.swift */,
 				E46BC86D2BC437060032611A /* Library2.swift */,
+				E46BC89A2BC480BA0032611A /* Patron2.swift */,
 			);
 			path = Models;
 			sourceTree = "<group>";
@@ -286,11 +295,14 @@
 			buildActionMask = 2147483647;
 			files = (
 				E46BC88F2BC470280032611A /* AddBook2View.swift in Sources */,
+				E46BC89F2BC577760032611A /* Checkout2View.swift in Sources */,
 				E46BC8932BC474B20032611A /* EditBook2View.swift in Sources */,
 				E46BC8952BC479640032611A /* OAError.swift in Sources */,
 				E46BC86F2BC437060032611A /* Library2.swift in Sources */,
 				E46BC8712BC43AEB0032611A /* Book2View.swift in Sources */,
+				E46BC89B2BC480BA0032611A /* Patron2.swift in Sources */,
 				E46BC8432BC436D50032611A /* ContentView.swift in Sources */,
+				E46BC89D2BC482A50032611A /* AddPatron2View.swift in Sources */,
 				E46BC8412BC436D50032611A /* ObserveAnalyze2App.swift in Sources */,
 				E46BC86E2BC437060032611A /* Book2.swift in Sources */,
 			);

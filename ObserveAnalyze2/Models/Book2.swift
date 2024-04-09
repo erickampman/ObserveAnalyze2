@@ -17,14 +17,19 @@ class Book2: Identifiable, Equatable {
 	
 	var author = ""
 	var title = ""
+	var patronID = Patron2.ID?.none
 	
 	var id: String {
 		return String("\(title): \(author)")
 	}
 
-	
 	init(author: String = "", title: String = "") {
 		self.author = author
 		self.title = title
+	}
+	
+	func setPatron(_ patronID: Patron2.ID) {
+		// FIXME what about already checked out?
+		self.patronID = patronID
 	}
 }

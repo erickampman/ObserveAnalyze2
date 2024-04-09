@@ -15,5 +15,8 @@ class Library2 {
 				 Book2(author: "Another Author", title: "Another Title")
 	]
 	
+	var patrons = [Patron2(name: "Todd Rundgren"),
+				   Patron2(name: "Kevin Gilbert")
+	]
 }
 
