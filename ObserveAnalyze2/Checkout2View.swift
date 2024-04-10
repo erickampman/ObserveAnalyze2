@@ -21,6 +21,8 @@ struct Checkout2View: View {
 
     var body: some View {
 		VStack {
+			Text("\(book.id)")
+				.font(.title2)
 			Picker("Patron", selection: $selectedPatron) {
 				Text("Not Checked out").tag(nil as String?)
 				ForEach(library.patrons) { patron in

@@ -16,46 +16,52 @@ struct ContentView: View {
 	@State private var title = ""
 	@State private var author = ""
 	@State private var bookSelection: Book2.ID?
+	@State private var doSplitView = true
 
 	var body: some View {
-		VStack {
-			NavigationStack {
-				List(library.books, selection: $bookSelection) { book in
-					Text(book.id)
+		if doSplitView {
+			OA2NavigationSplitView()
+		} else {
+			
+			VStack {
+				NavigationStack {
+					List(library.books, selection: $bookSelection) { book in
+						Text(book.id)
+					}
 				}
 			}
-		}
-		.padding()
-		.toolbar {
-			HStack {
-				Button("Add Book") {
-					showingAddBook.toggle()
+			.padding()
+			.toolbar {
+				HStack {
+					Button("Add Book") {
+						showingAddBook.toggle()
+					}
+					Button("Edit Book") {
+						showingEditBook.toggle()
+					}
+					.disabled(bookSelection == nil)
+					Text("•")
+					Button("Add Patron") {
+						showingAddPatron.toggle()
+					}
+					Button("Checkout") {
+						showingCheckout.toggle()
+					}
+					.disabled(bookSelection == nil)
 				}
-				Button("Edit Book") {
-					showingEditBook.toggle()
-				}
-				.disabled(bookSelection == nil)
-				Text("•")
-				Button("Add Patron") {
-					showingAddPatron.toggle()
-				}
-				Button("Checkout") {
-					showingCheckout.toggle()
-				}
-				.disabled(bookSelection == nil)
 			}
-		}
-		.sheet(isPresented: $showingAddBook) {
-			AddBook2View(showingAddBook: $showingAddBook)
-		}
-		.sheet(isPresented: $showingEditBook) {
-			EditBook2View(book: try! bookFromID(bookSelection), showingEditBook: $showingEditBook)
-		}
-		.sheet(isPresented: $showingAddPatron) {
-			AddPatron2View(showing: $showingAddPatron)
-		}
-		.sheet(isPresented: $showingCheckout) {
-			Checkout2View(book: try! bookFromID(bookSelection), showing: $showingCheckout)
+			.sheet(isPresented: $showingAddBook) {
+				AddBook2View(showingAddBook: $showingAddBook)
+			}
+			.sheet(isPresented: $showingEditBook) {
+				EditBook2View(book: try! bookFromID(bookSelection), showingEditBook: $showingEditBook)
+			}
+			.sheet(isPresented: $showingAddPatron) {
+				AddPatron2View(showing: $showingAddPatron)
+			}
+			.sheet(isPresented: $showingCheckout) {
+				Checkout2View(book: try! bookFromID(bookSelection), showing: $showingCheckout)
+			}
 		}
 
 	}
