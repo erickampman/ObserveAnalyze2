@@ -8,9 +8,12 @@
 import SwiftUI
 
 struct Book2View: View {
+	@Environment(Library2.self) private var library
 	var book: Book2
 	var body: some View {
 		VStack {
+			Text("Book Detail")
+				.font(.title)
 			HStack {
 				Text("Title:")
 				Text("\(book.title)")
@@ -19,6 +22,7 @@ struct Book2View: View {
 				Text("Author:")
 				Text("\(book.author)")
 			}
+			Text("Checked Out To: \(library.checkedOutDescription(book))")
 		}
 		.padding()
 	}

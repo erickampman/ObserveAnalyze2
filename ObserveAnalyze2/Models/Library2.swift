@@ -18,5 +18,49 @@ class Library2 {
 	var patrons = [Patron2(name: "Todd Rundgren"),
 				   Patron2(name: "Kevin Gilbert")
 	]
+	
+	func bookFromID(_ id: Book2.ID) -> Book2? {
+		return self.books.first { book in
+			book.id == id
+		}
+	}
+	
+	func patronFromID(_ id: Patron2.ID) -> Patron2? {
+		return self.patrons.first { patron in
+			patron.id == id
+		}
+	}
+
+	func booksCheckedOutByPatron(_ id: Patron2.ID) -> [Book2] {
+		var ret = [Book2]()
+		
+		for book in books {
+			if book.patronID == id {
+				ret.append(book)
+			}
+		}
+		return ret
+	}
+	
+	func checkedOutTo(_ book: Book2) -> Patron2.ID? {
+		guard let id = book.patronID else {
+			return nil
+		}
+		guard let patron = self.patronFromID(id) else {
+			return nil // probably an error
+		}
+		return patron.id
+	}
+	
+	func checkedOutDescription(_ book: Book2) -> String {
+		guard let id = checkedOutTo(book) else {
+			return "<<Available>>"
+		}
+		guard let patron = self.patronFromID(id) else {
+			return "<<Available>>"	// actually an error FIXME
+		}
+		return patron.id
+	}
+
 }
 

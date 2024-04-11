@@ -12,18 +12,17 @@ struct Patron2View: View {
 	var patron: Patron2
 	
     var body: some View {
-		ForEach(booksCheckedOut(patron)) { book in
+		VStack {
+			Text(patron.id)
+				.font(.title)
+			Text("Books Checked Out")
+				.font(.title3)
+				.underline()
+		}
+		ForEach( library.booksCheckedOutByPatron(patron.id)) { book in
 			Text(book.id)
 		}
     }
-	
-	func booksCheckedOut(_ patron: Patron2) -> [Book2] {
-		let books = library.books.filter { book in
-			book.patronID == patron.id
-		}
-		
-		return books
-	}
 }
 
 #Preview {

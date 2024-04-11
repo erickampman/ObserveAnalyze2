@@ -10,6 +10,7 @@ import SwiftUI
 struct OA2NavigationSplitView: View {
 	@Environment(Library2.self) private var library
 	@State private var bookSelection: Book2.ID?
+	@State private var patronSelection: Patron2.ID?
 	@State private var showingEditBook = false
 	@State private var showingCheckout = false
 	@State private var showingAddBook = false
@@ -36,13 +37,15 @@ struct OA2NavigationSplitView: View {
 						.font(.title3)
 					GeometryReader { gp in
 						ScrollView(.vertical) {
-							Text("\(gp.frame(in: CoordinateSpace.named("OuterVStack")).height)")
-							Text("\(outerGP.frame(in: CoordinateSpace.local).height)")
 							List(library.books, selection: $bookSelection) { book in
 								Text(book.id)
-								//								Book2View(book: book)
 							}
 							.frame(height: abs(outerGP.frame(in: CoordinateSpace.local).height) / 2.0 - 10.0)
+							.onChange(of: bookSelection) {
+								if bookSelection != nil {
+									patronSelection = nil
+								}
+							}
 						}
 					}
 					.padding()
@@ -55,16 +58,16 @@ struct OA2NavigationSplitView: View {
 					}
 					GeometryReader { gp in
 						ScrollView(.vertical) {
-							List {
-								ForEach(library.patrons) { patron in
-									NavigationLink {
-										Patron2View(patron: patron)
-									} label: {
-										Text("\(patron.name)")
-									}
-								}
+							List(library.patrons, selection: $patronSelection) { patron in
+								Text(patron.id)
 							}
 							.frame(height: abs(outerGP.frame(in: CoordinateSpace.local).height) / 2.0 - 10.0)
+							.onChange(of: patronSelection) {
+								if patronSelection != nil {
+									bookSelection = nil
+								}
+							}
+
 						}
 					}
 					.padding()
@@ -87,6 +90,8 @@ struct OA2NavigationSplitView: View {
 		} detail: {
 			if bookSelection != nil {
 				Book2View(book: selectedBook()!)
+			} else if patronSelection != nil {
+				Patron2View(patron: selectedPatron()!)
 			}
 		}
     }
@@ -96,9 +101,17 @@ struct OA2NavigationSplitView: View {
 		let ret = library.books.first { book in
 			book.id == selection
 		}
-		
 		return ret
 	}
+	
+	func selectedPatron() -> Patron2? {
+		guard let selection = patronSelection else { return nil }
+		let ret = library.patrons.first { patron in
+			patron.id == selection
+		}
+		return ret
+	}
+
 }
 
 #Preview {
