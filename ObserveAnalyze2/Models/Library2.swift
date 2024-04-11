@@ -31,6 +31,16 @@ class Library2 {
 		}
 	}
 
+	/*
+		In the real world this would be the wrong way to
+		go about it, given how likely the set of all books
+		in a library there would be.
+		
+		A reasonable solution might be to track a patron's
+		set of checked out books in the patron itself.
+	 
+		FIXME
+	 */
 	func booksCheckedOutByPatron(_ id: Patron2.ID) -> [Book2] {
 		var ret = [Book2]()
 		

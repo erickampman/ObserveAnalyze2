@@ -85,7 +85,7 @@ struct OA2NavigationSplitView: View {
 					AddPatron2View(showing: $showingAddPatron)
 				}
 			}
-			.frame(minHeight: 200)
+			.frame(minHeight: 60)
 
 		} detail: {
 			if bookSelection != nil {
