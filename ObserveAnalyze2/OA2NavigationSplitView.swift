@@ -10,8 +10,10 @@ import SwiftUI
 struct OA2NavigationSplitView: View {
 	@Environment(Library2.self) private var library
 	@State private var bookSelection: Book2.ID?
+	@State private var showingEditBook = false
 	@State private var showingCheckout = false
 	@State private var showingAddBook = false
+	@State private var showingAddPatron = false
 
     var body: some View {
 		NavigationSplitView {
@@ -22,6 +24,10 @@ struct OA2NavigationSplitView: View {
 						Button("Add") {
 							showingAddBook.toggle()
 						}
+						Button("Edit Book") {
+							showingEditBook.toggle()
+						}
+						.disabled(bookSelection == nil)
 						Button("Checkout") {
 							showingCheckout.toggle()
 						}
@@ -32,17 +38,6 @@ struct OA2NavigationSplitView: View {
 						ScrollView(.vertical) {
 							Text("\(gp.frame(in: CoordinateSpace.named("OuterVStack")).height)")
 							Text("\(outerGP.frame(in: CoordinateSpace.local).height)")
-							/*
-							 List {
-							 ForEach(library.books) { book in
-							 NavigationLink {
-							 Book2View(book: book)
-							 } label: {
-							 Text("'\(book.title)' by '\(book.author)'")
-							 }
-							 }
-							 }
-							 */
 							List(library.books, selection: $bookSelection) { book in
 								Text(book.id)
 								//								Book2View(book: book)
@@ -51,8 +46,13 @@ struct OA2NavigationSplitView: View {
 						}
 					}
 					.padding()
-					Text("Patrons")
-						.font(.title3)
+					HStack {
+						Text("Patrons")
+							.font(.title3)
+						Button("Add") {
+							showingAddPatron.toggle()
+						}
+					}
 					GeometryReader { gp in
 						ScrollView(.vertical) {
 							List {
@@ -75,16 +75,19 @@ struct OA2NavigationSplitView: View {
 				.sheet(isPresented: $showingAddBook) {
 					AddBook2View(showingAddBook: $showingAddBook)
 				}
-
+				.sheet(isPresented: $showingEditBook) {
+					EditBook2View(book: selectedBook()!, showingEditBook: $showingEditBook)
+				}
+				.sheet(isPresented: $showingAddPatron) {
+					AddPatron2View(showing: $showingAddPatron)
+				}
 			}
 			.frame(minHeight: 200)
 
-		} content: {
+		} detail: {
 			if bookSelection != nil {
 				Book2View(book: selectedBook()!)
 			}
-		} detail: {
-			Text("Detail")
 		}
     }
 		  
